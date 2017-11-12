@@ -2,127 +2,19 @@
 <html>
 	<head>
 	<meta charset="UTF-8" />
-	<title>I'm in a React app!</title>
+	<title>React Contact Book</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 	<div id="react-app"></div>
 
 	<script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
 	<script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
-	<script>
-		var contacts = [
-			{key: 1, name: "Bonnie Pham", email: "dear.bonnie.pham@gmail.com", description: "Corgi fanatic"},
-			{key: 2, name: "Christine Pham", email: "pham.christine90@gmail.com", description: "Corgi fanatic #2"},
-			{key: 3, name: "James Leung", email: "james.leung83@gmail.com", description: "Corgi fanatic #2's follower"},
-		]
 
-		var newContact = {name: "", email: "", description: ""}
+	<script src="ContactItem.js"></script>
+	<script src="ContactForm.js"></script>
+	<script src="ContactView.js"></script>
 
-		var ContactItem = React.createClass({
-			propTypes: {
-				name: React.PropTypes.string.isRequired,
-				email: React.PropTypes.string.isRequired,
-				description: React.PropTypes.string,
-			},
-
-			render: function() {
-				return ( 
-					React.createElement('li', {className: 'ContactItem'},
-						React.createElement('h2', {className: 'ContactItem-name'}, this.props.name),
-						React.createElement('a', {className: 'ContactItem-email', href:'mailto:' + this.props.email}, this.props.email),
-						React.createElement('p', {className: 'ContactItem-description'}, this.props.description),
-					)
-				)
-			}
-		})
-
-		var contactItemElements = contacts
-			.map(function(contact) { return React.createElement(ContactItem, contact) })
-
-		var ContactForm = React.createClass({
-			propTypes: {
-				contact: React.PropTypes.object.isRequired
-			},
-
-			render: function() {
-				return (
-					React.createElement('form', {className: 'ContactForm'},
-						React.createElement('input', {
-							type: 'text',
-							placeholder: 'Name (required)',
-							className: 'ContactForm-name',
-							value: this.props.contact.name,
-						}),
-						React.createElement('input', {
-							type: 'text',
-							placeholder: 'Email',
-							className: 'ContactForm-email',
-							value: this.props.contact.email,
-						}),
-						React.createElement('textarea', {
-							placeholder: 'Description',
-							className: 'ContactForm-description',
-							value: this.props.contact.description,
-						}),
-						React.createElement('button', {type: 'submit', className: 'ContactForm-button'}, 'Add Contact')
-					)
-				)
-			}
-		})
-
-		var rootElement = 
-			React.createElement('div', {className: 'Contacts-container'},
-				React.createElement('h1', {className: 'Contacts-title'}, "Contacts"),
-				React.createElement('ul', {className: 'Contacts-list'}, contactItemElements),
-				React.createElement(ContactForm, {contact: newContact})
-			)
-
-		ReactDOM.render(rootElement, document.getElementById('react-app'))
-	</script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			background: #000;
-			letter-spacing: 2px;
-			text-align: center;
-		}
-		.Contacts-title {
-			color: #c0ffec;
-		}
-		.Contacts-list {
-			padding: 0;
-		}
-		.ContactItem {
-			border: 1px solid #c0ffec;
-			max-width: 500px;
-			padding: 20px;
-			margin: 0 auto;
-			margin-bottom: 20px;
-		}
-		.ContactItem-name {
-			text-transform: uppercase;
-			font-weight: 600;
-			color: #c0c7ff
-		}
-		.ContactItem-email {
-			color: #ffc0fc;
-		}
-		.ContactItem-description {
-			color: #ffe7c0
-		}
-		.ContactForm {
-			max-width: 200px;
-			margin: 0 auto;
-		}
-		.ContactForm-name, .ContactForm-email, .ContactForm-description, .ContactForm-button {
-			font-family: monospace;
-			padding: 10px;
-			margin: 10px;
-		}
-		.ContactForm-button {
-			background-color: #c0ffec;
-			color: #ffc0c0;
-		}
-	</style>
+	<script src="main.js"></script>
 	</body>
 </html>

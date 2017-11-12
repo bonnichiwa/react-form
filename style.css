@@ -1,0 +1,43 @@
+body {
+	font-family: monospace;
+	background: #000;
+	letter-spacing: 2px;
+	text-align: center;
+}
+.ContactView-title {
+	color: #c0ffec;
+}
+.ContactView-list {
+	padding: 0;
+}
+.ContactItem {
+	border: 1px solid #c0ffec;
+	max-width: 500px;
+	padding: 20px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+.ContactItem-name {
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #c0c7ff
+}
+.ContactItem-email {
+	color: #ffc0fc;
+}
+.ContactItem-description {
+	color: #ffe7c0
+}
+.ContactForm {
+	max-width: 200px;
+	margin: 0 auto;
+}
+.ContactForm-name, .ContactForm-email, .ContactForm-description, .ContactForm-button {
+	font-family: monospace;
+	padding: 10px;
+	margin: 10px;
+}
+.ContactForm-button {
+	background-color: #c0ffec;
+	color: #ffc0c0;
+}
