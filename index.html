@@ -11,22 +11,37 @@
 	<script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
 	<script>
 		var contacts = [
-			{key: 1, name: "Bonnie Pham", email: "dear.bonnie.pham@gmail.com"},
-			{key: 2, name: "Christine Pham", email: "pham.christine90@gmail.com"}
+			{key: 1, name: "Bonnie Pham", email: "dear.bonnie.pham@gmail.com", description: "Corgi fanatic"},
+			{key: 2, name: "Christine Pham", email: "pham.christine90@gmail.com", description: "Corgi fanatic #2"},
+			{key: 3, name: "James Leung", email: "james.leung83@gmail.com", description: "Corgi fanatic #2's follower"},
 		]
 
-		var listElements = contacts
-			.map(function(contact) {
-				return React.createElement('li', {key: contact.key},
-					React.createElement('h2', {}, contact.name),
-					React.createElement('a', {href: 'mailto' + contact.email}, contact.email)
+		var ContactItem = React.createClass({
+			propTypes: {
+				name: React.PropTypes.string.isRequired,
+				email: React.PropTypes.string.isRequired,
+				description: React.PropTypes.string,
+			},
+
+			render: function() {
+				return ( 
+					React.createElement('li', {className: 'Contact'},
+						React.createElement('h2', {className: 'Contact-name'}, this.props.name),
+						React.createElement('a', {className: 'Contact-email', href:'mailto:' + this.props.email}, this.props.email),
+						React.createElement('p', {className: 'Contact-description'}, this.props.description),
+					)
 				)
-			})
+			}
+
+		})
+
+		var contactItemElements = contacts
+			.map(function(contact) { return React.createElement(ContactItem, contact) })
 
 		var rootElement = 
 			React.createElement('div', {},
 				React.createElement('h1', {}, "Contacts"),
-				React.createElement('ul', {}, listElements)
+				React.createElement('ul', {}, contactItemElements)
 			)
 
 		ReactDOM.render(rootElement, document.getElementById('react-app'))
