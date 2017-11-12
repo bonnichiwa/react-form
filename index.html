@@ -46,20 +46,22 @@
 
 			render: function() {
 				return (
-					React.createElement('form', {},
+					React.createElement('form', {className: 'ContactForm'},
 						React.createElement('input', {
 							type: 'text',
 							placeholder: 'Name (required)',
+							className: 'ContactForm-name',
 							value: this.props.contact.name,
 						}),
 						React.createElement('input', {
 							type: 'text',
 							placeholder: 'Email',
+							className: 'ContactForm-email',
 							value: this.props.contact.email,
 						}),
-						React.createElement('input', {
-							type: 'textarea',
+						React.createElement('textarea', {
 							placeholder: 'Description',
+							className: 'ContactForm-description',
 							value: this.props.contact.description,
 						}),
 						React.createElement('button', {type: 'submit', className: 'ContactForm-button'}, 'Add Contact')
@@ -69,9 +71,9 @@
 		})
 
 		var rootElement = 
-			React.createElement('div', {},
+			React.createElement('div', {className: 'Contacts-container'},
 				React.createElement('h1', {className: 'Contacts-title'}, "Contacts"),
-				React.createElement('ul', {}, contactItemElements),
+				React.createElement('ul', {className: 'Contacts-list'}, contactItemElements),
 				React.createElement(ContactForm, {contact: newContact})
 			)
 
@@ -79,13 +81,27 @@
 	</script>
 	<style type="text/css">
 		body {
-			text-transform: uppercase;
-			font-family: sans-serif;
+			font-family: monospace;
+			background: #000;
+			letter-spacing: 2px;
+			text-align: center;
 		}
 		.Contacts-title {
 			color: #c0ffec;
 		}
+		.Contacts-list {
+			padding: 0;
+		}
+		.ContactItem {
+			border: 1px solid #c0ffec;
+			max-width: 500px;
+			padding: 20px;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
 		.ContactItem-name {
+			text-transform: uppercase;
+			font-weight: 600;
 			color: #c0c7ff
 		}
 		.ContactItem-email {
@@ -94,11 +110,19 @@
 		.ContactItem-description {
 			color: #ffe7c0
 		}
+		.ContactForm {
+			max-width: 200px;
+			margin: 0 auto;
+		}
+		.ContactForm-name, .ContactForm-email, .ContactForm-description, .ContactForm-button {
+			font-family: monospace;
+			padding: 10px;
+			margin: 10px;
+		}
 		.ContactForm-button {
 			background-color: #c0ffec;
 			color: #ffc0c0;
 		}
-
 	</style>
 	</body>
 </html>
