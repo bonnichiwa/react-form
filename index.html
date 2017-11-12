@@ -10,20 +10,23 @@
 	<script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
 	<script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
 	<script>
+		var contacts = [
+			{key: 1, name: "Bonnie Pham", email: "dear.bonnie.pham@gmail.com"},
+			{key: 2, name: "Christine Pham", email: "pham.christine90@gmail.com"}
+		]
+
+		var listElements = contacts
+			.map(function(contact) {
+				return React.createElement('li', {key: contact.key},
+					React.createElement('h2', {}, contact.name),
+					React.createElement('a', {href: 'mailto' + contact.email}, contact.email)
+				)
+			})
+
 		var rootElement = 
 			React.createElement('div', {},
 				React.createElement('h1', {}, "Contacts"),
-				React.createElement('ul', {},
-					React.createElement('li', {},
-						React.createElement('h2', {}, "Bonnie Pham"),
-						React.createElement('a', {href: 'mailto:dear.bonnie.pham@gmail.com'},
-							'dear.bonnie.pham@gmail.com')
-					),
-					React.createElement('li', {},
-						React.createElement('h2', {}, "Christine Pham"),
-						React.createElement('a', {href: 'mailto:pham.christine90@gmail.com'}, 'pham.christine90@gmail.com')
-					)
-				)
+				React.createElement('ul', {}, listElements)
 			)
 
 		ReactDOM.render(rootElement, document.getElementById('react-app'))
