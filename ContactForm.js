@@ -1,27 +1,40 @@
 var ContactForm = React.createClass({
 	propTypes: {
-		contact: React.PropTypes.object.isRequired
+		value: React.PropTypes.object.isRequired,
+		onChange: React.PropTypes.func.isRequired,
 	},
 
 	render: function() {
+		var oldContact = this.props.value;
+		var onChange = this.props.onChange;
+
 		return (
 			React.createElement('form', {className: 'ContactForm'},
 				React.createElement('input', {
 					type: 'text',
 					placeholder: 'Name (required)',
 					className: 'ContactForm-name',
-					value: this.props.contact.name,
+					value: this.props.value.name,
+					onChange: function(e) {
+						onChange(Object.assign({}, oldContact, {name: e.target.value}))
+					}
 				}),
 				React.createElement('input', {
 					type: 'text',
 					placeholder: 'Email',
 					className: 'ContactForm-email',
-					value: this.props.contact.email,
+					value: this.props.value.email,
+					onChange: function(e) {
+						onChange(Object.assign({}, oldContact, {email: e.target.value}))
+					}
 				}),
 				React.createElement('textarea', {
 					placeholder: 'Description',
 					className: 'ContactForm-description',
-					value: this.props.contact.description,
+					value: this.props.value.description,
+					onChange: function(e) {
+						onChange(Object.assign({}, oldContact, {description: e.target.value}))
+					}
 				}),
 				React.createElement('button', {type: 'submit', className: 'ContactForm-button'}, 'Add Contact')
 			)
