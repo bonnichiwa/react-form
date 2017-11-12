@@ -16,6 +16,8 @@
 			{key: 3, name: "James Leung", email: "james.leung83@gmail.com", description: "Corgi fanatic #2's follower"},
 		]
 
+		var newContact = {name: "", email: "", description: ""}
+
 		var ContactItem = React.createClass({
 			propTypes: {
 				name: React.PropTypes.string.isRequired,
@@ -25,26 +27,78 @@
 
 			render: function() {
 				return ( 
-					React.createElement('li', {className: 'Contact'},
-						React.createElement('h2', {className: 'Contact-name'}, this.props.name),
-						React.createElement('a', {className: 'Contact-email', href:'mailto:' + this.props.email}, this.props.email),
-						React.createElement('p', {className: 'Contact-description'}, this.props.description),
+					React.createElement('li', {className: 'ContactItem'},
+						React.createElement('h2', {className: 'ContactItem-name'}, this.props.name),
+						React.createElement('a', {className: 'ContactItem-email', href:'mailto:' + this.props.email}, this.props.email),
+						React.createElement('p', {className: 'ContactItem-description'}, this.props.description),
 					)
 				)
 			}
-
 		})
 
 		var contactItemElements = contacts
 			.map(function(contact) { return React.createElement(ContactItem, contact) })
 
+		var ContactForm = React.createClass({
+			propTypes: {
+				contact: React.PropTypes.object.isRequired
+			},
+
+			render: function() {
+				return (
+					React.createElement('form', {},
+						React.createElement('input', {
+							type: 'text',
+							placeholder: 'Name (required)',
+							value: this.props.contact.name,
+						}),
+						React.createElement('input', {
+							type: 'text',
+							placeholder: 'Email',
+							value: this.props.contact.email,
+						}),
+						React.createElement('input', {
+							type: 'textarea',
+							placeholder: 'Description',
+							value: this.props.contact.description,
+						}),
+						React.createElement('button', {type: 'submit', className: 'ContactForm-button'}, 'Add Contact')
+					)
+				)
+			}
+		})
+
 		var rootElement = 
 			React.createElement('div', {},
-				React.createElement('h1', {}, "Contacts"),
-				React.createElement('ul', {}, contactItemElements)
+				React.createElement('h1', {className: 'Contacts-title'}, "Contacts"),
+				React.createElement('ul', {}, contactItemElements),
+				React.createElement(ContactForm, {contact: newContact})
 			)
 
 		ReactDOM.render(rootElement, document.getElementById('react-app'))
 	</script>
+	<style type="text/css">
+		body {
+			text-transform: uppercase;
+			font-family: sans-serif;
+		}
+		.Contacts-title {
+			color: #c0ffec;
+		}
+		.ContactItem-name {
+			color: #c0c7ff
+		}
+		.ContactItem-email {
+			color: #ffc0fc;
+		}
+		.ContactItem-description {
+			color: #ffe7c0
+		}
+		.ContactForm-button {
+			background-color: #c0ffec;
+			color: #ffc0c0;
+		}
+
+	</style>
 	</body>
 </html>
