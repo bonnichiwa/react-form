@@ -2,6 +2,7 @@ var ContactForm = React.createClass({
 	propTypes: {
 		value: React.PropTypes.object.isRequired,
 		onChange: React.PropTypes.func.isRequired,
+		onSubmit: React.PropTypes.func.isRequired,
 	},
 
 	onNameInput: function(e) {
@@ -9,16 +10,25 @@ var ContactForm = React.createClass({
 	},
 
 	onEmailInput: function(e) {
-		this.props.onChange(Object.assign({}. this.props.value, {email: e.target.value}))
+	    this.props.onChange(Object.assign({}, this.props.value, {email: e.target.value}))
 	},
 
 	onDescriptionInput: function(e) {
 		this.props.onChange(Object.assign({}, this.props.value, {description: e.target.value}))
 	},
 
+	onSubmit: function(e) {
+		e.preventDefault();
+		this.props.onSubmit;
+	},
+
 	render: function() {
 		return (
-			React.createElement('form', {className: 'ContactForm'},
+			React.createElement('form', {
+				className: 'ContactForm',
+				noValidate: true,
+				onSubmit: this.onSubmit
+				},
 				React.createElement('input', {
 					type: 'text',
 					placeholder: 'Name (required)',
